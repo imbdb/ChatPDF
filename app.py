@@ -8,7 +8,7 @@ from langchain.vectorstores import faiss
 from langchain.prompts import PromptTemplate
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
-from langchain.chat_models import ChatOpenAI
+from langchain.chat_models import ChatOpenAI, ChatOllama
 from htmlTemplates import css, bot_template, user_template
 
 # creating custom template to guide llm model
@@ -47,7 +47,7 @@ def get_vectorstore(chunks):
 
 # generating conversation chain  
 def get_conversationchain(vectorstore):
-    llm=ChatOpenAI(temperature=0.2)
+    llm=ChatOllama(model="llama3", temperature=0.2)
     memory = ConversationBufferMemory(memory_key='chat_history', 
                                       return_messages=True,
                                       output_key='answer') # using conversation buffer memory to hold past information
